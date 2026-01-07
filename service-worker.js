@@ -1,4 +1,4 @@
-const CACHE_NAME = "study-app-v2";
+const CACHE_NAME = "study-app-v1.1";
 
 /* Install: cache core files */
 self.addEventListener("install", event => {
