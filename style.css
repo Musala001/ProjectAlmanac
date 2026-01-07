@@ -181,3 +181,17 @@ body.dark .app-footer a {
 .install-btn:hover {
   background-color: #005fa3;
 }
+.cache-status {
+  text-align: center;
+  background-color: #e0f0ff;
+  color: #0077cc;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+body.dark .cache-status {
+  background-color: #1e1e2a;
+  color: #4da3ff;
+}

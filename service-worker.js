@@ -11,7 +11,12 @@ self.addEventListener("install", event => {
         "./script.js",
         "./resources.json",
         "./manifest.json"
-      ]);
+      ]).then(() => {
+        // Notify all clients that caching is complete
+        self.clients.matchAll().then(clients => {
+          clients.forEach(client => client.postMessage("CACHE_COMPLETE"));
+        });
+      });
     })
   );
   self.skipWaiting();

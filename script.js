@@ -163,3 +163,18 @@ installBtn.addEventListener("click", async () => {
 window.addEventListener("appinstalled", () => {
   installBtn.style.display = "none";
 });
+const cacheStatus = document.getElementById("cacheStatus");
+
+// Update when service worker is ready
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.ready.then(reg => {
+    cacheStatus.textContent = "Caching in progress… your content will be available offline soon.";
+  });
+
+  // Listen for messages from service worker (optional)
+  navigator.serviceWorker.addEventListener("message", event => {
+    if (event.data === "CACHE_COMPLETE") {
+      cacheStatus.textContent = "All content is now available offline!";
+    }
+  });
+}
