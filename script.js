@@ -142,3 +142,39 @@ fetch('resources.json')
     createSubjectButtons(Object.keys(data).sort());
   })
   .catch(() => contentSection.innerHTML = '<p>Error loading data.</p>');
+// Install App button logic
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+// Wait until service worker is ready
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.ready.then(() => {
+    console.log("Service worker active: app is ready for offline use");
+  });
+}
+
+// Listen for the browser install prompt
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); // Prevent automatic prompt
+  deferredPrompt = e;
+
+  // Show the button only after service worker is ready
+  navigator.serviceWorker.ready.then(() => {
+    installBtn.style.display = "inline-block";
+  });
+});
+
+// Handle button click
+installBtn.addEventListener("click", async () => {
+  installBtn.style.display = "none"; // Hide after click
+  deferredPrompt.prompt(); // Show the browser install prompt
+
+  const choice = await deferredPrompt.userChoice; // optional: track choice
+  if (choice.outcome === "accepted") {
+    console.log("App installed!");
+  } else {
+    console.log("User dismissed the install prompt");
+  }
+
+  deferredPrompt = null; // Reset
+});

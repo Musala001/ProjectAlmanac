@@ -165,3 +165,28 @@ body.dark .app-footer {
 body.dark .app-footer a {
   color: #4da3ff;
 }
+.install-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.6rem 1.2rem;
+  background-color: #0077cc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.install-btn:hover {
+  background-color: #005fa3;
+}
+
+body.dark .install-btn {
+  background-color: #4da3ff;
+}
+
+body.dark .install-btn:hover {
+  background-color: #0077cc;
+}
